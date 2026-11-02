@@ -727,7 +727,7 @@
           <!-- =======================================================
                D. PALACE BALUSTRADE RAILING (ABOVE MARBLE FLOOR)
                ======================================================= -->
-          <g id="palaceRailing" transform="translate(0, 622)">
+          <g id="palaceRailing" transform="translate(0, 722)">
             <!-- Top Round Finials along Railing -->
             <g fill="#7c3615">
               <circle cx="10" cy="4" r="4.5" />
@@ -793,7 +793,7 @@
           <!-- =======================================================
                E. PERSPECTIVE WHITE MARBLE FLOOR WITH GOLD MANDALAS
                ======================================================= -->
-          <g id="marbleFloor" transform="translate(0, 700)">
+          <g id="marbleFloor" transform="translate(0, 800)">
             <rect x="0" y="0" width="400" height="140" fill="#fcfaf5" />
             <!-- Perspective Diagonal Grid Lines -->
             <g stroke="#8c969e" stroke-width="0.9" opacity="0.7">
@@ -878,6 +878,7 @@
           <!-- =======================================================
                F. ROYAL PEACOCK & PINK PEONY BUSH (BOTTOM RIGHT)
                ======================================================= -->
+          <g transform="translate(180, 440) scale(0.55)">
           <g class="peacock-anim" filter="url(#softShadow)">
             <!-- Delicate Branch Behind Peacock -->
             <path d="M295,610 Q270,585 252,575 M278,595 Q268,572 264,562" fill="none" stroke="#6c4527" stroke-width="2" />
@@ -967,6 +968,7 @@
               <use href="#pinkRose" x="38" y="25" transform="scale(1.45)" style="transform-origin: 38px 25px;" />
               <use href="#pinkRose" x="78" y="34" transform="scale(1.1)" style="transform-origin: 78px 34px;" />
             </g>
+          </g>
           </g>
         </svg>
 
@@ -1365,7 +1367,7 @@
         name: "Groom",
         fullName: "Ritesh Mishra",
         role: "The Royal Groom",
-        parents: "Son of Mr. Rakesh Mishra & Mrs. Sunita Sharma",
+        parents: "Son of Mr. Rakesh Mishra & Mrs. Saroj Mishra",
         bio: "A warm-hearted soul who believes in love, laughter, and lifelong adventures.",
         image: "assets/groom.jpg",
         fallbackImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
@@ -1375,7 +1377,7 @@
         name: "Bride",
         fullName: "Pritiksha Mishra",
         role: "The Royal Bride",
-        parents: "Daughter of Mr. Mukesh Mishra & Mrs. Meera Verma",
+        parents: "Daughter of Mr. Mukesh Mishra & Mrs. Pramila Mishra",
         bio: "Graceful, vibrant, and ready to begin a beautiful new chapter together.",
         image: "assets/bride.jpg",
         fallbackImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
@@ -1842,7 +1844,7 @@
       const bar3 = document.getElementById('bar3');
 
       if (playing) {
-        textEl.textContent = 'Calm Music';
+        textEl.textContent = 'Music On';
         bar1.classList.add('eq-bar-1');
         bar2.classList.add('eq-bar-2');
         bar3.classList.add('eq-bar-3');
@@ -1941,6 +1943,10 @@
         particles.push(createGlitterParticle());
       }
       animateGlitter();
+
+      startCalmMusic();
+      document.addEventListener('pointerdown', initAudioContext, { once: true });
+      document.addEventListener('keydown', initAudioContext, { once: true });
     };
   </script>
 </body>
