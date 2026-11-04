@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Royal Wedding Invitation | Groom Weds Bride</title>
+  <title>Weeding Invitation</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts matching the exact reference typography -->
@@ -295,8 +296,8 @@
 
     /* Cute Date Reveal Ribbon Animation */
     @keyframes floatSeal {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-3px) scale(1.02); }
+      0%, 100% { scale: 1; }
+      50% { scale: 1.1; }
     }
     @keyframes shimmerSweep {
       0% { transform: translateX(-120%) skewX(-20deg); }
@@ -315,6 +316,7 @@
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
       animation: shimmerSweep 2.8s infinite;
+      pointer-events: none;
     }
 
     /* Soundwave Equalizer Bars */
@@ -1029,7 +1031,7 @@
             <!-- Clickable Groom Name -->
             <div
               onclick="openPersonModal('groom')"
-              class="name-interactive group relative px-4 py-0.5 rounded-2xl"
+              class="name-interactive date-cover-card date-cover-shimmer group relative px-4 py-0.5 rounded-2xl"
               title="Tap to view Groom's photo"
             >
               <h1
@@ -1047,7 +1049,7 @@
             <!-- Clickable Bride Name -->
             <div
               onclick="openPersonModal('bride')"
-              class="name-interactive group relative px-4 py-0.5 rounded-2xl mt-0.5"
+              class="name-interactive date-cover-card date-cover-shimmer group relative px-4 py-0.5 rounded-2xl mt-0.5"
               title="Tap to view Bride's photo"
             >
               <h1
@@ -1129,7 +1131,7 @@
           <!-- CLICKABLE VENUE SECTION (Matches Reference Image + Opens Venue Page) -->
           <div
             onclick="openVenuePage()"
-            class="group cursor-pointer flex flex-col items-center px-5 py-1.5 rounded-2xl transition-all duration-300 hover:bg-white/55 hover:shadow-sm active:scale-95"
+            class="date-cover-card date-cover-shimmer group relative cursor-pointer flex flex-col items-center px-5 py-1.5 rounded-2xl transition-all duration-300 hover:bg-white/55 hover:shadow-sm active:scale-95"
             title="Tap to open Venue Photo & Google Map Location"
           >
             <span
@@ -1288,6 +1290,21 @@
             </div>
           </div>
 
+          <!-- Venue Help Contact -->
+          <div class="rounded-2xl bg-white p-3.5 shadow-sm border border-amber-200/80 flex items-center justify-between gap-3">
+            <div>
+              <p class="text-xs font-bold text-slate-800">Need help?</p>
+              <p id="venueHelpContactName" class="text-[11px] text-slate-500 mt-0.5"></p>
+            </div>
+            <a
+              id="venueHelpContactPhone"
+              href="tel:"
+              class="shrink-0 rounded-full bg-rose-50 px-3 py-2 text-xs font-bold text-rose-700 border border-rose-200 hover:bg-rose-100 transition"
+            >
+              📞 <span id="venueHelpContactPhoneText"></span>
+            </a>
+          </div>
+
           <!-- Embedded Interactive Google Map -->
           <div class="rounded-3xl overflow-hidden shadow-md border-2 border-amber-200/80 bg-white">
             <div class="px-3.5 py-2.5 bg-amber-50/70 border-b border-amber-200/60 flex items-center justify-between">
@@ -1395,7 +1412,11 @@
         fallbackImage: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1000&q=80",
         description: "Join us at the Mishra Marriage Lawn for an evening of traditional rituals, dinner, and celebration under the stars.",
         googleMapsEmbedUrl: "https://maps.google.com/maps?q=Mishra+Marriage+Lawn,+Crossing,+Sitapur+Rd,+Bhitauli,+Bhitoli+Khurd,+Lucknow,+Uttar+Pradesh+226020&t=&z=16&ie=UTF8&iwloc=&output=embed",
-        googleMapsLink: "https://maps.app.goo.gl/8Uii7iwQChFEE1m58"
+        googleMapsLink: "https://maps.app.goo.gl/8Uii7iwQChFEE1m58",
+        helpContact: {
+          name: "Rakesh Mishra",
+          phone: "9140304538"
+        }
       },
       music: {
         src: "assets/calm-music.mp3"
@@ -1439,6 +1460,10 @@
       document.getElementById('venuePageDescription').textContent = cfg.venueDetails.description;
       document.getElementById('venuePageDate').textContent = cfg.weddingDate;
       document.getElementById('venuePageTime').textContent = `${cfg.weddingTime} • ${cfg.receptionNote}`;
+      const helpContact = cfg.venueDetails.helpContact || { name: "Rakesh Mishra", phone: "9140304538" };
+      document.getElementById('venueHelpContactName').textContent = helpContact.name;
+      document.getElementById('venueHelpContactPhone').href = `tel:${helpContact.phone}`;
+      document.getElementById('venueHelpContactPhoneText').textContent = helpContact.phone;
       document.getElementById('googleMapIframe').src = cfg.venueDetails.googleMapsEmbedUrl;
       document.getElementById('googleMapsExternalLink').href = cfg.venueDetails.googleMapsLink;
       document.getElementById('googleMapsBtnBottom').href = cfg.venueDetails.googleMapsLink;
